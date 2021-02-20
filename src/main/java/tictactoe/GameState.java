@@ -13,6 +13,11 @@ public class GameState {
   }
 
   @Override
+  public String toString() {
+    return "Status: " + status + ", next up: " + nextUp;
+  }
+
+  @Override
   public boolean equals(Object other) {
     return reflectionEquals(this, other);
   }
