@@ -38,7 +38,8 @@ public class Board {
         of(TOP_LEFT, CENTRE_LEFT, BOTTOM_LEFT),
         of(TOP_MIDDLE, CENTRE_MIDDLE, BOTTOM_MIDDLE),
         of(TOP_RIGHT, CENTRE_RIGHT, BOTTOM_RIGHT),
-        of(TOP_LEFT, TOP_MIDDLE, TOP_RIGHT)
+        of(TOP_LEFT, TOP_MIDDLE, TOP_RIGHT),
+        of(CENTRE_LEFT, CENTRE_MIDDLE, CENTRE_RIGHT)
     );
     return winningCombinations.anyMatch(winningCombination ->
         winningCombination.allMatch(takenSquares::contains)
