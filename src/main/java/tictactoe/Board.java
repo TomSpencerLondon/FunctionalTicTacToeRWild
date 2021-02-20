@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import static java.util.stream.Stream.of;
 import static tictactoe.Square.*;
 
 public class Board {
@@ -33,7 +34,12 @@ public class Board {
   }
 
   public boolean hasWinningCombination() {
-    Stream<Square> winningCombination = Stream.of(TOP_LEFT, CENTRE_LEFT, BOTTOM_LEFT);
-    return winningCombination.allMatch(square -> takenSquares.contains(square));
+    Stream<Stream<Square>> winningCombinations = of(
+        of(TOP_LEFT, CENTRE_LEFT, BOTTOM_LEFT),
+        of(TOP_MIDDLE, CENTRE_MIDDLE, BOTTOM_MIDDLE)
+    );
+    return winningCombinations.anyMatch(winningCombination ->
+        winningCombination.allMatch(takenSquares::contains)
+    );
   }
 }

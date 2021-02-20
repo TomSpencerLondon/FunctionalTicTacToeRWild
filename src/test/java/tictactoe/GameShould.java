@@ -59,7 +59,8 @@ public class GameShould {
   }
 
   @CsvSource({
-      "TOP_LEFT,TOP_MIDDLE,CENTRE_LEFT,CENTRE_MIDDLE,BOTTOM_LEFT"
+      "TOP_LEFT,TOP_MIDDLE,CENTRE_LEFT,CENTRE_MIDDLE,BOTTOM_LEFT",
+      "TOP_MIDDLE,TOP_LEFT,CENTRE_MIDDLE,CENTRE_LEFT,BOTTOM_MIDDLE"
   })
   @ParameterizedTest
   void recognise_a_win(Square s1, Square s2, Square s3, Square s4, Square s5) {
