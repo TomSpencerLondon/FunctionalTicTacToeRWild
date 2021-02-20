@@ -7,10 +7,8 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 import static tictactoe.Player.O;
 import static tictactoe.Player.X;
-import static tictactoe.Square.TOP_LEFT;
-import static tictactoe.Square.TOP_MIDDLE;
-import static tictactoe.Status.GAME_ON;
-import static tictactoe.Status.SQUARE_ALREADY_PLAYED;
+import static tictactoe.Square.*;
+import static tictactoe.Status.*;
 
 
 public class GameShould {
@@ -37,6 +35,25 @@ public class GameShould {
   void not_permit_square_to_be_played_twice() {
     Game game = play(TOP_LEFT, TOP_MIDDLE, TOP_LEFT);
     assertThat(game.state()).isEqualTo(new GameState(SQUARE_ALREADY_PLAYED, X));
+  }
+
+  // X O X
+  // X X O
+  // O X O
+  @Test
+  void recognise_a_draw() {
+    Game game = play(
+        TOP_LEFT,
+        TOP_MIDDLE,
+        TOP_RIGHT,
+        CENTRE_RIGHT,
+        CENTRE_LEFT,
+        BOTTOM_LEFT,
+        CENTRE_MIDDLE,
+        BOTTOM_RIGHT,
+        BOTTOM_MIDDLE
+    );
+    assertThat(game.state()).isEqualTo(new GameState(DRAW));
   }
 
   private Game play(Square... squares) {

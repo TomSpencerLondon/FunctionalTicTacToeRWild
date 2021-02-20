@@ -2,6 +2,7 @@ package tictactoe;
 
 import static tictactoe.Player.O;
 import static tictactoe.Player.X;
+import static tictactoe.Status.DRAW;
 import static tictactoe.Status.GAME_ON;
 
 public class Game {
@@ -16,13 +17,19 @@ public class Game {
   }
 
   public Game(Status status, Player lastPlayer, Board board) {
-    this.status = status;
     this.lastPlayer = lastPlayer;
     this.board = board;
+    if (board.isFull())
+      this.status = DRAW;
+    else
+      this.status = status;
   }
 
   public GameState state() {
-    return new GameState(status, nextPlayer());
+    if (status == DRAW)
+      return new GameState(status);
+    else
+      return new GameState(status, nextPlayer());
   }
 
   public Game play(Square square) {

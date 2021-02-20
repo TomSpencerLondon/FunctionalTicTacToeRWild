@@ -12,9 +12,15 @@ public class GameState {
     this.nextUp = nextUp;
   }
 
+  public GameState(Status status) {
+    this.status = status;
+    nextUp = null;
+  }
+
   @Override
   public String toString() {
-    return "Status: " + status + ", next up: " + nextUp;
+    return nextUp == null
+        ? "Status: " + status : "Status: " + status + ", next up: " + nextUp;
   }
 
   @Override
