@@ -1,6 +1,5 @@
 package tictactoe;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +7,7 @@ import java.util.Set;
 public class Board {
   private Set<Square> takenSquares;
 
-  public Board(){
+  public Board() {
     this.takenSquares = Collections.emptySet();
   }
 
