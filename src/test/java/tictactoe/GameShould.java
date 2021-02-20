@@ -38,7 +38,8 @@ public class GameShould {
   void not_permit_square_to_be_played_twice() {
     Game game = new Game();
     game = game.play(TOP_LEFT);
+    game = game.play(TOP_MIDDLE);
     game = game.play(TOP_LEFT);
-    assertThat(game.state()).isEqualTo(new GameState(SQUARE_ALREADY_PLAYED, O));
+    assertThat(game.state()).isEqualTo(new GameState(SQUARE_ALREADY_PLAYED, X));
   }
 }
