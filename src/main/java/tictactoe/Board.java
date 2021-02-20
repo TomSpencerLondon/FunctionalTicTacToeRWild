@@ -8,12 +8,12 @@ import java.util.Set;
 public class Board {
   private Set<Square> takenSquares;
 
-  public Board(Set<Square> takenSquares) {
-    this.takenSquares = takenSquares;
-  }
-
   public Board(){
     this.takenSquares = Collections.emptySet();
+  }
+
+  private Board(Set<Square> takenSquares) {
+    this.takenSquares = takenSquares;
   }
 
   public boolean alreadyTaken(Square square) {
