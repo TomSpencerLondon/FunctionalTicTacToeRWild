@@ -2,8 +2,7 @@ package tictactoe;
 
 import static tictactoe.Player.O;
 import static tictactoe.Player.X;
-import static tictactoe.Status.DRAW;
-import static tictactoe.Status.GAME_ON;
+import static tictactoe.Status.*;
 
 public class Game {
   private final Status status;
@@ -21,12 +20,14 @@ public class Game {
     this.board = board;
     if (board.isFull())
       this.status = DRAW;
+    else if (board.hasWinningCombination())
+      this.status = X_HAS_WON;
     else
       this.status = status;
   }
 
   public GameState state() {
-    if (status == DRAW)
+    if (status == DRAW || status == X_HAS_WON)
       return new GameState(status);
     else
       return new GameState(status, nextPlayer());

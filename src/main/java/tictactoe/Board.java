@@ -3,6 +3,9 @@ package tictactoe;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import static tictactoe.Square.*;
 
 public class Board {
   private Set<Square> takenSquares;
@@ -27,5 +30,10 @@ public class Board {
 
   public boolean isFull() {
     return takenSquares.size() == 9;
+  }
+
+  public boolean hasWinningCombination() {
+    Stream<Square> winningCombination = Stream.of(TOP_LEFT, CENTRE_LEFT, BOTTOM_LEFT);
+    return winningCombination.allMatch(square -> takenSquares.contains(square));
   }
 }

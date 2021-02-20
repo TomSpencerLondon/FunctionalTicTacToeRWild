@@ -1,6 +1,8 @@
 package tictactoe;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
@@ -54,6 +56,15 @@ public class GameShould {
         BOTTOM_MIDDLE
     );
     assertThat(game.state()).isEqualTo(new GameState(DRAW));
+  }
+
+  @CsvSource({
+      "TOP_LEFT,TOP_MIDDLE,CENTRE_LEFT,CENTRE_MIDDLE,BOTTOM_LEFT"
+  })
+  @ParameterizedTest
+  void recognise_a_win(Square s1, Square s2, Square s3, Square s4, Square s5) {
+    Game game = play(s1, s2, s3, s4, s5);
+    assertThat(game.state()).isEqualTo(new GameState(X_HAS_WON));
   }
 
   private Game play(Square... squares) {
