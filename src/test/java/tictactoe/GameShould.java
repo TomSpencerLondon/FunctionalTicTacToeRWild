@@ -20,4 +20,12 @@ public class GameShould {
     game = game.play();
     assertThat(game.state()).isEqualTo(new GameState(Status.GAME_ON, Player.O));
   }
+
+  @Test
+  void alternate_players() {
+    Game game = new Game();
+    game = game.play();
+    game = game.play();
+    assertThat(game.state()).isEqualTo(new GameState(Status.GAME_ON, Player.X));
+  }
 }
