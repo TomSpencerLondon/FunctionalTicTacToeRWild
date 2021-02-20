@@ -20,14 +20,14 @@ public class Game {
     this.board = board;
     if (board.isFull())
       this.status = DRAW;
-    else if (board.hasWinningCombination())
-      this.status = X_HAS_WON;
+    else if (board.hasWinningCombination(lastPlayer))
+      this.status = lastPlayer == X ? X_HAS_WON : O_HAS_WON;
     else
       this.status = status;
   }
 
   public GameState state() {
-    if (status == DRAW || status == X_HAS_WON)
+    if (status == DRAW || status == X_HAS_WON || status == O_HAS_WON)
       return new GameState(status);
     else
       return new GameState(status, nextPlayer());
@@ -37,7 +37,7 @@ public class Game {
     if (board.alreadyTaken(square))
       return new Game(Status.SQUARE_ALREADY_PLAYED, lastPlayer, board);
     else
-      return new Game(GAME_ON, nextPlayer(), board.take(square));
+      return new Game(GAME_ON, nextPlayer(), board.take(square, nextPlayer()));
   }
 
   private Player nextPlayer() {
